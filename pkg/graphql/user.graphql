@@ -1,6 +1,8 @@
 scalar Time
 
-type User {
+directive @goModel(model: String!) on OBJECT
+
+type User @goModel(model: "github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models/models.User") {
   id: ID!
   name: String!
   email: String!
