@@ -1,0 +1,19 @@
+schema:
+  - pkg/graphql/*.graphql
+exec:
+  filename: internal/core/graph/generated/generated.go
+  package: generated
+model:
+  filename: internal/core/models_gen/models_gen.go
+  package: models_gen
+models:
+  User:
+    model: 
+      - github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models/models.User
+resolver:
+  layout: follow-schema
+  dir: internal/core/graph
+  package: graph
+  filename_template: "{name}.resolvers.go"
+  type: Resolver
+autobind: []
