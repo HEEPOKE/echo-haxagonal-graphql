@@ -3,15 +3,19 @@
 ## how to generate
 
 ```bash
-cd pkg/graphql/
-```
-
-```bash
 go run github.com/99designs/gqlgen generate
 ```
 
-## how to build server
+## how to run
+
+- config environments .env
 
 ```bash
-go run github.com/99designs/gqlgen init
+cp .env.example .env
+```
+
+- run
+
+```bash
+go run cmd/main.go
 ```
