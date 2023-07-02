@@ -5,10 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/99designs/gqlgen/handler"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/app/resolver"
-	"github.com/HEEPOKE/echo-haxagonal-graphql/pkg/graphql/"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -23,8 +20,8 @@ func NewServer(userResolver *resolver.UserResolver) *Server {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.GET("/apis/playground", playgroundHandler())
-	e.POST("/apis/graphql", echo.WrapHandler(graphqlHandler(userResolver)))
+	// e.GET("/apis/playground", playgroundHandler())
+	// e.POST("/apis/graphql", echo.WrapHandler(graphqlHandler(userResolver)))
 
 	return &Server{
 		echo:         e,
@@ -50,17 +47,17 @@ func (s *Server) Stop(timeout time.Duration) error {
 	return s.echo.Shutdown(ctx)
 }
 
-func graphqlHandler(userResolver *resolver.UserResolver) http.Handler {
-	cfg := graphql.Config{Resolvers: userResolver}
-	h := handler.GraphQL(graphql.NewExecutableSchema(cfg))
+// func graphqlHandler(userResolver *resolver.UserResolver) http.Handler {
+// 	cfg := graphql.Config{Resolvers: userResolver}
+// 	h := handler.GraphQL(graphql.NewExecutableSchema(cfg))
 
-	return h
-}
+// 	return h
+// }
 
-func playgroundHandler() echo.HandlerFunc {
-	h := playground.Handler("GraphQL Playground", "/graphql")
-	return func(c echo.Context) error {
-		h.ServeHTTP(c.Response(), c.Request())
-		return nil
-	}
-}
+// func playgroundHandler() echo.HandlerFunc {
+// 	h := playground.Handler("GraphQL Playground", "/graphql")
+// 	return func(c echo.Context) error {
+// 		h.ServeHTTP(c.Response(), c.Request())
+// 		return nil
+// 	}
+// }
