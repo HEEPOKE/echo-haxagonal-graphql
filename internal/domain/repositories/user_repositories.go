@@ -4,6 +4,8 @@ import (
 	"context"
 
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type UserRepository struct {

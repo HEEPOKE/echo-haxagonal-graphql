@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["errgroup", "haxagonal", "HEEPOKE", "labstack"]
+  "cSpell.words": [
+    "bson",
+    "errgroup",
+    "gqlgen",
+    "haxagonal",
+    "HEEPOKE",
+    "labstack"
+  ]
 }

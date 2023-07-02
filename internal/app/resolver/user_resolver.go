@@ -5,13 +5,14 @@ import (
 
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/app/services"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models"
+	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models/mutations"
 )
 
 type UserResolver struct {
 	UserService *services.UserService
 }
 
-func (r *UserResolver) CreateUserMutation(ctx context.Context, input CreateUserInput) (*models.User, error) {
+func (r *UserResolver) CreateUserMutation(ctx context.Context, input mutations.CreateUserInput) (*models.User, error) {
 	user := &models.User{
 		ID:    input.ID,
 		Name:  input.Name,
