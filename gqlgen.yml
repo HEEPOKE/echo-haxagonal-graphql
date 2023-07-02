@@ -1,8 +1,0 @@
-schema:
-  - schema.graphql
-exec:
-  filename: internal/graph/generated/generated.go
-  package: generated
-  type: Resolver
-  layout: follow-schema
-  output: internal/graph/generated/generated.go

@@ -5,7 +5,6 @@ type User {
 }
 
 input CreateUserInput {
-  id: ID!
   name: String!
   email: String!
 }
