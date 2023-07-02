@@ -48,8 +48,8 @@ func (s *Server) Stop(timeout time.Duration) error {
 }
 
 // func graphqlHandler(userResolver *resolver.UserResolver) http.Handler {
-// 	cfg := graphql.Config{Resolvers: userResolver}
-// 	h := handler.GraphQL(graphql.NewExecutableSchema(cfg))
+// 	cfg := generated.Config{Resolvers: userResolver}
+// 	h := handler.GraphQL(generated.NewExecutableSchema(cfg))
 
 // 	return h
 // }

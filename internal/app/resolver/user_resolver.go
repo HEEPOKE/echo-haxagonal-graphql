@@ -14,7 +14,6 @@ type UserResolver struct {
 
 func (r *UserResolver) CreateUserMutation(ctx context.Context, input mutations.CreateUserInput) (*models.User, error) {
 	user := &models.User{
-		ID:    input.ID,
 		Name:  input.Name,
 		Email: input.Email,
 	}

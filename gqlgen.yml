@@ -1,0 +1,18 @@
+schema:
+  - schema.graphql
+exec:
+  filename: internal/core/graph/generated/generated.go
+  package: generated
+model:
+  filename: internal/core/graph/models_gen/models_gen.go
+  package: models_gen
+models:
+  User:
+    model: internal/domain/models/models.User
+resolver:
+  layout: follow-schema
+  dir: internal/core/graph/generated
+  package: generated
+  filename: resolver.go
+  type: Resolver
+autobind: []
