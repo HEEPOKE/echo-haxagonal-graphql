@@ -3,12 +3,12 @@ package services
 import (
 	"fmt"
 
+	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/core/interfaces"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models"
-	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/repositories"
 )
 
 type UserService struct {
-	UserRepo repositories.UserRepository
+	UserRepo interfaces.UserInterface
 }
 
 func (s *UserService) GetUser(id string) (*models.User, error) {

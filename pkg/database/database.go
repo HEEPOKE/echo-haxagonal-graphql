@@ -46,3 +46,7 @@ func (db *MongoDB) Close() error {
 	log.Println("Disconnected from MongoDB")
 	return nil
 }
+
+func (db *MongoDB) GetDatabase() *mongo.Database {
+	return db.database
+}
