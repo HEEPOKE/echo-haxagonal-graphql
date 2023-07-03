@@ -15,6 +15,10 @@ func NewUserService(userRepo interfaces.UserInterface) *UserService {
 	}
 }
 
+func (s *UserService) GetAllUsers() ([]*models.User, error) {
+	return s.UserRepo.GetAllUsers()
+}
+
 func (s *UserService) GetUser(id string) (*models.User, error) {
 	return s.UserRepo.GetUserByID(id)
 }

@@ -15,6 +15,10 @@ func NewShopService(shopRepo interfaces.ShopInterface) *ShopService {
 	}
 }
 
+func (s *ShopService) GetAllShops() ([]*models.Shop, error) {
+	return s.ShopRepo.GetAllShops()
+}
+
 func (s *ShopService) CreateShop(shop *models.Shop) error {
 	return s.ShopRepo.CreateShop(shop)
 }

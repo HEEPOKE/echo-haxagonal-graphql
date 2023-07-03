@@ -8,10 +8,37 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type UserRepository struct {
 	DB *mongo.Database
+}
+
+func (r *UserRepository) GetAllUsers() ([]*models.User, error) {
+	collection := r.DB.Collection("users")
+
+	projection := bson.M{
+		"password": 0,
+	}
+
+	cur, err := collection.Find(context.TODO(), bson.M{}, options.Find().SetProjection(projection))
+	if err != nil {
+		return nil, err
+	}
+	defer cur.Close(context.TODO())
+
+	var users []*models.User
+	for cur.Next(context.TODO()) {
+		var user models.User
+		err := cur.Decode(&user)
+		if err != nil {
+			return nil, err
+		}
+		users = append(users, &user)
+	}
+
+	return users, cur.Err()
 }
 
 func (r *UserRepository) SaveUser(user *models.User) error {
