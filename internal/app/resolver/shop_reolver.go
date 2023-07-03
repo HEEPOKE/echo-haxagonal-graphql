@@ -3,7 +3,6 @@ package resolver
 import (
 	"context"
 
-	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/core/graph/models_gen"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/core/interfaces"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models"
 )
@@ -18,19 +17,19 @@ func NewShopResolver(shopService interfaces.ShopServiceInterface) *ShopResolver 
 	}
 }
 
-func (r *ShopResolver) CreateShop(ctx context.Context, input models_gen.CreateShopInput) (*models.Shop, error) {
-	shop := &models.Shop{
-		Name:    input.Name,
-		Address: input.Address,
-	}
+// func (r *ShopResolver) CreateShop(ctx context.Context, input models_gen.CreateShopInput) (*models.Shop, error) {
+// 	shop := &models.Shop{
+// 		Name:    input.Name,
+// 		Address: input.Address,
+// 	}
 
-	err := r.ShopService.CreateShop(shop)
-	if err != nil {
-		return nil, err
-	}
+// 	err := r.ShopService.CreateShop(shop)
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-	return shop, nil
-}
+// 	return shop, nil
+// }
 
 func (r *ShopResolver) GetShop(ctx context.Context, id string) (*models.Shop, error) {
 	shop, err := r.ShopService.GetShopByID(id)

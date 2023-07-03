@@ -4,7 +4,6 @@ import (
 	"context"
 
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/app/services"
-	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/core/graph/models_gen"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models"
 )
 
@@ -18,28 +17,28 @@ func NewUserResolver(userService *services.UserService) *UserResolver {
 	}
 }
 
-func (r *UserResolver) CreateUser(ctx context.Context, input models_gen.CreateUserInput) (*models.User, error) {
-	user := &models.User{
-		Username: input.Username,
-		Email:    input.Email,
-		Password: input.Password,
-		Tel:      input.Tel,
-		Role:     models.RoleUser,
-	}
+// func (r *UserResolver) CreateUser(ctx context.Context, input models_gen.CreateUserInput) (*models.User, error) {
+// 	user := &models.User{
+// 		Username: input.Username,
+// 		Email:    input.Email,
+// 		Password: input.Password,
+// 		Tel:      input.Tel,
+// 		Role:     models.RoleUser,
+// 	}
 
-	err := r.UserService.CreateUser(user)
-	if err != nil {
-		return nil, err
-	}
+// 	err := r.UserService.CreateUser(user)
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-	return &models.User{
-		ID:       user.ID,
-		Username: user.Username,
-		Email:    user.Email,
-		Tel:      user.Tel,
-		Role:     user.Role,
-	}, nil
-}
+// 	return &models.User{
+// 		ID:       user.ID,
+// 		Username: user.Username,
+// 		Email:    user.Email,
+// 		Tel:      user.Tel,
+// 		Role:     user.Role,
+// 	}, nil
+// }
 
 func (r *UserResolver) GetUser(ctx context.Context, id string) (*models.User, error) {
 	user, err := r.UserService.GetUser(id)
