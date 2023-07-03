@@ -5,7 +5,7 @@ import (
 )
 
 type Shop struct {
-	ID        string    `bson:"_id" json:"id"`
+	ID        string    `bson:"_id,omitempty" json:"id"`
 	Name      string    `bson:"name" json:"name" index:"unique"`
 	Address   string    `bson:"address" json:"address"`
 	CreatedAt time.Time `bson:"createdAt" json:"createdAt"`
