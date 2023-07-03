@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/app/services"
+	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/core/graph/models_gen"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models"
-	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models/mutations"
 )
 
 type UserResolver struct {
@@ -18,10 +18,13 @@ func NewUserResolver(userService *services.UserService) *UserResolver {
 	}
 }
 
-func (r *UserResolver) CreateUserMutation(ctx context.Context, input mutations.CreateUserInput) (*models.User, error) {
+func (r *UserResolver) CreateUser(ctx context.Context, input models_gen.CreateUserInput) (*models.User, error) {
 	user := &models.User{
 		Username: input.Username,
 		Email:    input.Email,
+		Password: input.Password,
+		Tel:      input.Tel,
+		Role:     models.RoleUser,
 	}
 
 	err := r.UserService.CreateUser(user)
@@ -38,7 +41,7 @@ func (r *UserResolver) CreateUserMutation(ctx context.Context, input mutations.C
 	}, nil
 }
 
-func (r *UserResolver) GetUserQuery(ctx context.Context, id string) (*models.User, error) {
+func (r *UserResolver) GetUser(ctx context.Context, id string) (*models.User, error) {
 	user, err := r.UserService.GetUser(id)
 	if err != nil {
 		return nil, err
