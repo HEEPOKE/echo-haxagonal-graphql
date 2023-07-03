@@ -12,9 +12,15 @@ type UserResolver struct {
 	UserService *services.UserService
 }
 
+func NewUserResolver(userService *services.UserService) *UserResolver {
+	return &UserResolver{
+		UserService: userService,
+	}
+}
+
 func (r *UserResolver) CreateUserMutation(ctx context.Context, input mutations.CreateUserInput) (*models.User, error) {
 	user := &models.User{
-		UserName: input.UserName,
+		Username: input.Username,
 		Email:    input.Email,
 	}
 
@@ -25,7 +31,7 @@ func (r *UserResolver) CreateUserMutation(ctx context.Context, input mutations.C
 
 	return &models.User{
 		ID:       user.ID,
-		UserName: user.UserName,
+		Username: user.Username,
 		Email:    user.Email,
 		Tel:      user.Tel,
 		Role:     user.Role,

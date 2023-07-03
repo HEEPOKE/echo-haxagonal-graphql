@@ -8,7 +8,7 @@ import (
 
 type UserQuery struct {
 	ID        string
-	UserName  string
+	Username  string
 	Email     string
 	Password  string
 	Tel       string

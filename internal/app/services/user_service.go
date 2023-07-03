@@ -9,6 +9,12 @@ type UserService struct {
 	UserRepo interfaces.UserInterface
 }
 
+func NewUserService(userRepo interfaces.UserInterface) *UserService {
+	return &UserService{
+		UserRepo: userRepo,
+	}
+}
+
 func (s *UserService) GetUser(id string) (*models.User, error) {
 	return s.UserRepo.GetUserByID(id)
 }
