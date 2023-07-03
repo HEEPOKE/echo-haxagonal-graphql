@@ -10,9 +10,15 @@ models:
   User:
     model:
       - github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models.User
+    fields:
+      reviews:
+        resolver: true
   Shop:
     model:
       - github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models.Shop
+    fields:
+      reviews:
+        resolver: true
 resolver:
   layout: follow-schema
   dir: internal/core/graph

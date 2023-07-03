@@ -26,11 +26,11 @@ input CreateUserInput {
   role: Role!
 }
 
-type Query {
+extend type Query {
   getUser(id: ID!): User
 }
 
-type Mutation {
+extend type Mutation {
   createUser(input: CreateUserInput!): User
 }
 

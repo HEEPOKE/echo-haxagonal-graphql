@@ -1,7 +1,3 @@
-scalar Time
-
-directive @goModel(model: String!) on OBJECT
-
 type Shop 
   @goModel(
     model: "github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models.Shop"
@@ -18,15 +14,15 @@ input CreateShopInput {
   address: String!
 }
 
-type Query {
+extend type Query {
   getShop(id: ID!): Shop
 }
 
-type Mutation {
+extend type Mutation {
   createShop(input: CreateShopInput!): Shop
 }
 
-schema {
-  query: Query
-  mutation: Mutation
-}
+# schema {
+#   query: Query
+#   mutation: Mutation
+# }
