@@ -14,7 +14,7 @@ import (
 )
 
 // GetAllUsers is the resolver for the getAllUsers field.
-func (r *queryResolver) GetAllUsers(ctx context.Context) (*response.Response, error) {
+func (r *queryResolver) GetAllUsers(ctx context.Context) ([]*models.User, error) {
 	users, err := r.UserService.GetAllUsers()
 	if err != nil {
 		return nil, err
