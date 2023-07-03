@@ -9,23 +9,11 @@ import (
 
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/core/graph/generated"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models"
-	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models/response"
-	"github.com/HEEPOKE/echo-haxagonal-graphql/pkg/constants"
 )
 
 // GetAllUsers is the resolver for the getAllUsers field.
 func (r *queryResolver) GetAllUsers(ctx context.Context) ([]*models.User, error) {
-	users, err := r.UserService.GetAllUsers()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &response.Response{
-		Data:   users,
-		Status: constants.SUCCESS,
-	}
-
-	return response, nil
+	return r.UserService.GetAllUsers()
 }
 
 // GetAllShops is the resolver for the getAllShops field.
