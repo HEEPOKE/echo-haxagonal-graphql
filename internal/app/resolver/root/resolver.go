@@ -5,8 +5,8 @@ import (
 )
 
 type RootResolver struct {
-	*resolver.UserResolver
-	*resolver.ShopResolver
+	UserResolver *resolver.UserResolver
+	ShopResolver *resolver.ShopResolver
 }
 
 func NewRootResolver(userResolver *resolver.UserResolver, shopResolver *resolver.ShopResolver) *RootResolver {

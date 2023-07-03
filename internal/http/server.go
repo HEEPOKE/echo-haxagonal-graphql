@@ -48,14 +48,10 @@ func (s *Server) Stop(timeout time.Duration) error {
 	return s.echo.Shutdown(ctx)
 }
 
-// func graphqlHandler(rootResolver *root.RootResolver) http.Handler {
-// 	cfg := generated.Config{
-// 		Resolvers: rootResolver,
-// 	}
-
-// 	h := handler.GraphQL(generated.NewExecutableSchema(cfg))
-
-// 	return h
+// func graphqlHandler(userService *services.UserService, shopService *services.ShopService) http.Handler {
+// srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
+// h := handler.GraphQL(generated.NewExecutableSchema(cfg))
+// return h
 // }
 
 func playgroundHandler() echo.HandlerFunc {

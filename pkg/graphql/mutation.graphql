@@ -1,0 +1,4 @@
+type Mutation {
+  createUser(input: CreateUserInput!): User
+  createShop(input: CreateShopInput!): Shop
+}

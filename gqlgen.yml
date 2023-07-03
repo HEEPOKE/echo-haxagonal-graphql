@@ -1,11 +1,11 @@
 schema:
-  - pkg/graphql/*.graphql
+  - pkg/graphql/**/*.graphql
 exec:
   filename: internal/core/graph/generated/generated.go
   package: generated
 model:
   filename: internal/core/graph/models_gen/models_gen.go
-  package: models_gen
+  package: model
 models:
   User:
     model:
