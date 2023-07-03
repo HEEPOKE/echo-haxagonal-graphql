@@ -14,8 +14,8 @@ type UserResolver struct {
 
 func (r *UserResolver) CreateUserMutation(ctx context.Context, input mutations.CreateUserInput) (*models.User, error) {
 	user := &models.User{
-		Name:  input.Name,
-		Email: input.Email,
+		UserName: input.UserName,
+		Email:    input.Email,
 	}
 
 	err := r.UserService.CreateUser(user)
@@ -24,9 +24,11 @@ func (r *UserResolver) CreateUserMutation(ctx context.Context, input mutations.C
 	}
 
 	return &models.User{
-		ID:    user.ID,
-		Name:  user.Name,
-		Email: user.Email,
+		ID:       user.ID,
+		UserName: user.UserName,
+		Email:    user.Email,
+		Tel:      user.Tel,
+		Role:     user.Role,
 	}, nil
 }
 
@@ -36,9 +38,5 @@ func (r *UserResolver) GetUserQuery(ctx context.Context, id string) (*models.Use
 		return nil, err
 	}
 
-	return &models.User{
-		ID:    user.ID,
-		Name:  user.Name,
-		Email: user.Email,
-	}, nil
+	return user, nil
 }

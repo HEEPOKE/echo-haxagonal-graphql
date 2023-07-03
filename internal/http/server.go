@@ -58,7 +58,7 @@ func graphqlHandler(userResolver *resolver.UserResolver) http.Handler {
 }
 
 func playgroundHandler() echo.HandlerFunc {
-	h := playground.Handler("GraphQL Playground", "/graphql")
+	h := playground.Handler("GraphQL Playground", "/")
 	return func(c echo.Context) error {
 		h.ServeHTTP(c.Response(), c.Request())
 		return nil

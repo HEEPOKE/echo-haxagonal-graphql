@@ -1,8 +1,6 @@
 package services
 
 import (
-	"fmt"
-
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/core/interfaces"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models"
 )
@@ -16,9 +14,5 @@ func (s *UserService) GetUser(id string) (*models.User, error) {
 }
 
 func (s *UserService) CreateUser(user *models.User) error {
-	if user.Name == "" || user.Email == "" {
-		return fmt.Errorf("name and email are required")
-	}
-
 	return s.UserRepo.SaveUser(user)
 }
