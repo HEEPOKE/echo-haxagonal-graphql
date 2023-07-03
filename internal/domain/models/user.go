@@ -1,13 +1,15 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type User struct {
-	ID        string    `json:"id"`
-	Username  string    `json:"username"`
-	Email     string    `json:"email"`
-	Password  string    `json:"password"`
-	Tel       string    `json:"tel"`
-	CreatedAt time.Time `json:"createdAt"`
-	UpdatedAt time.Time `json:"updatedAt"`
+	ID        string    `bson:"_id" json:"id"`
+	Username  string    `bson:"username" json:"username"`
+	Email     string    `bson:"email" json:"email" index:"unique"`
+	Password  string    `bson:"password" json:"password"`
+	Tel       string    `bson:"tel" json:"tel"`
+	CreatedAt time.Time `bson:"createdAt" json:"createdAt"`
+	UpdatedAt time.Time `bson:"updatedAt" json:"updatedAt"`
 }
