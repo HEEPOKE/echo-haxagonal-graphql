@@ -15,7 +15,7 @@ type MongoDB struct {
 }
 
 func NewMongoDB(uri, databaseName string) (*MongoDB, error) {
-	client, err := mongo.NewClient(options.Client().ApplyURI(uri))
+	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(uri))
 	if err != nil {
 		return nil, err
 	}
@@ -23,7 +23,7 @@ func NewMongoDB(uri, databaseName string) (*MongoDB, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	err = client.Connect(ctx)
+	err = client.Ping(ctx, nil)
 	if err != nil {
 		return nil, err
 	}

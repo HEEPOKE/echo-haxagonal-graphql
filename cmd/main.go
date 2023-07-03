@@ -11,12 +11,18 @@ import (
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/app/services"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/repositories"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/http"
+	"github.com/HEEPOKE/echo-haxagonal-graphql/pkg/config"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/pkg/database"
 	"golang.org/x/sync/errgroup"
 )
 
 func main() {
-	db, err := database.NewMongoDB("mongodb://localhost:27017", "mydb")
+	cfg, err := config.LoadConfig()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	db, err := database.NewMongoDB(cfg.MONGO_URL, cfg.DB_NAME)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -32,8 +38,8 @@ func main() {
 
 	g := new(errgroup.Group)
 	g.Go(func() error {
-		log.Println("Starting server at :8080")
-		return server.Start(":8080")
+		log.Println("Starting server at :" + cfg.PORT)
+		return server.Start(":" + cfg.PORT)
 	})
 
 	g.Go(func() error {
