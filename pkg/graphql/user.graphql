@@ -2,17 +2,31 @@ scalar Time
 
 directive @goModel(model: String!) on OBJECT
 
-type User @goModel(model: "github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models/models.User") {
+enum Role {
+  ADMIN
+  USER
+}
+
+type User
+  @goModel(
+    model: "github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models.User"
+  ) {
   id: ID!
-  name: String!
+  username: String!
   email: String!
+  password: String!
+  tel: String!
+  role: Role!
   createdAt: Time!
   updatedAt: Time!
 }
 
 input CreateUserInput {
-  name: String!
+  username: String!
   email: String!
+  password: String!
+  tel: String!
+  role: Role!
 }
 
 type Query {
