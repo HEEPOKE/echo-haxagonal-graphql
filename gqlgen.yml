@@ -25,12 +25,4 @@ resolver:
   package: graph
   filename_template: "{name}.resolvers.go"
   type: Resolver
-  user_layout: "single"
-  user_filename: "user.resolver.go"
-  user_package: "graph"
-  user_type: "UserResolver"
-  shop_layout: "single"
-  shop_filename: "shop.resolver.go"
-  shop_package: "graph"
-  shop_type: "ShopResolver"
 autobind: []

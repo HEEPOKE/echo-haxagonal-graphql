@@ -1,4 +1,16 @@
+type ResponseStatus {
+  code: String!
+  message: String!
+}
+
+type Response {
+  data: JSON
+  status: ResponseStatus!
+}
+
 type Query {
+  getAllUsers: Response!
+  getAllShops: [Shop]
   getUser(id: ID!): User
   getShop(id: ID!): Shop
 }
