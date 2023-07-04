@@ -6,6 +6,7 @@
     "gqlgen",
     "haxagonal",
     "HEEPOKE",
-    "labstack"
+    "labstack",
+    "stretchr"
   ]
 }
