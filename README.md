@@ -23,5 +23,5 @@ go run cmd/main.go
 ## how to test unit test
 
 ```bash
-go test ./...
+go test ./internal/core/tests/
 ```
