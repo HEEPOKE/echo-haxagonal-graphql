@@ -26,3 +26,11 @@ func (s *UserService) GetUser(id string) (*models.User, error) {
 func (s *UserService) CreateUser(user *models.User) error {
 	return s.UserRepo.SaveUser(user)
 }
+
+func (s *UserService) UpdateUser(user *models.User) error {
+	return s.UserRepo.UpdateUser(user)
+}
+
+func (s *UserService) DeleteUser(id string) error {
+	return s.UserRepo.DeleteUser(id)
+}

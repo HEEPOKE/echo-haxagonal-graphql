@@ -73,3 +73,43 @@ func (r *UserRepository) GetUserByID(id string) (*models.User, error) {
 
 	return &user, nil
 }
+
+func (r *UserRepository) UpdateUser(user *models.User) error {
+	collection := r.DB.Collection("users")
+
+	filter := bson.M{"_id": user.ID}
+
+	update := bson.M{
+		"$set": bson.M{
+			"username":  user.Username,
+			"email":     user.Email,
+			"tel":       user.Tel,
+			"updatedAt": user.UpdatedAt,
+		},
+	}
+
+	_, err := collection.UpdateOne(context.TODO(), filter, update)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (r *UserRepository) DeleteUser(id string) error {
+	objectID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return err
+	}
+
+	collection := r.DB.Collection("users")
+
+	filter := bson.M{"_id": objectID}
+
+	_, err = collection.DeleteOne(context.TODO(), filter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

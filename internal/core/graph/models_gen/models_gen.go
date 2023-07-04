@@ -8,8 +8,15 @@ type CreateShopInput struct {
 }
 
 type CreateUserInput struct {
-	Username string `json:"username"`
-	Email    string `json:"email"`
-	Password string `json:"password"`
-	Tel      string `json:"tel"`
+	Username string  `json:"username"`
+	Email    string  `json:"email"`
+	Password *string `json:"password,omitempty"`
+	Tel      string  `json:"tel"`
+}
+
+type UpdateUserInput struct {
+	Username *string `json:"username,omitempty"`
+	Email    *string `json:"email,omitempty"`
+	Password *string `json:"password,omitempty"`
+	Tel      *string `json:"tel,omitempty"`
 }

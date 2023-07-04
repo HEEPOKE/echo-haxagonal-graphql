@@ -32,6 +32,44 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.CreateUse
 	return user, nil
 }
 
+// UpdateUser is the resolver for the updateUser field.
+func (r *mutationResolver) UpdateUser(ctx context.Context, id string, input model.UpdateUserInput) (*models.User, error) {
+	user, err := r.UserService.GetUser(id)
+	if err != nil {
+		return nil, err
+	}
+
+	if input.Username != nil {
+		user.Username = *input.Username
+	}
+	if input.Email != nil {
+		user.Email = *input.Email
+	}
+	if input.Tel != nil {
+		user.Tel = *input.Tel
+	}
+
+	user.UpdatedAt = time.Now()
+
+	err = r.UserService.UpdateUser(user)
+	if err != nil {
+		return nil, err
+	}
+
+	return user, nil
+}
+
+// DeleteUser is the resolver for the deleteUser field.
+func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (*bool, error) {
+	err := r.UserService.DeleteUser(id)
+	if err != nil {
+		return nil, err
+	}
+
+	deleted := true
+	return &deleted, nil
+}
+
 // CreateShop is the resolver for the createShop field.
 func (r *mutationResolver) CreateShop(ctx context.Context, input model.CreateShopInput) (*models.Shop, error) {
 	shop := &models.Shop{
