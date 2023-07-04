@@ -77,7 +77,12 @@ func (r *UserRepository) GetUserByID(id string) (*models.User, error) {
 func (r *UserRepository) UpdateUser(user *models.User) error {
 	collection := r.DB.Collection("users")
 
-	filter := bson.M{"_id": user.ID}
+	objectID, err := primitive.ObjectIDFromHex(user.ID)
+	if err != nil {
+		return err
+	}
+
+	filter := bson.M{"_id": objectID}
 
 	update := bson.M{
 		"$set": bson.M{
@@ -88,7 +93,8 @@ func (r *UserRepository) UpdateUser(user *models.User) error {
 		},
 	}
 
-	_, err := collection.UpdateOne(context.TODO(), filter, update)
+	ctx := context.TODO()
+	_, err = collection.UpdateOne(ctx, filter, update)
 	if err != nil {
 		return err
 	}

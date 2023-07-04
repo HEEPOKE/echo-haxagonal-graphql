@@ -19,8 +19,8 @@ input CreateUserInput {
 }
 
 input UpdateUserInput {
-  username: String
-  email: String
+  username: String!
+  email: String!
   password: String
-  tel: String
+  tel: String!
 }

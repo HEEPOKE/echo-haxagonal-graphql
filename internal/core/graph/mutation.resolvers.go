@@ -39,24 +39,22 @@ func (r *mutationResolver) UpdateUser(ctx context.Context, id string, input mode
 		return nil, err
 	}
 
-	if input.Username != nil {
-		user.Username = *input.Username
-	}
-	if input.Email != nil {
-		user.Email = *input.Email
-	}
-	if input.Tel != nil {
-		user.Tel = *input.Tel
+	updatedUser := &models.User{
+		ID:        user.ID,
+		Username:  input.Username,
+		Email:     input.Email,
+		Password:  user.Password,
+		Tel:       input.Tel,
+		CreatedAt: user.CreatedAt,
+		UpdatedAt: time.Now(),
 	}
 
-	user.UpdatedAt = time.Now()
-
-	err = r.UserService.UpdateUser(user)
+	err = r.UserService.UpdateUser(updatedUser)
 	if err != nil {
 		return nil, err
 	}
 
-	return user, nil
+	return updatedUser, nil
 }
 
 // DeleteUser is the resolver for the deleteUser field.
