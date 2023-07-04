@@ -43,7 +43,7 @@ func (r *mutationResolver) UpdateUser(ctx context.Context, id string, input mode
 		ID:        user.ID,
 		Username:  input.Username,
 		Email:     input.Email,
-		Password:  user.Password,
+		Password:  input.Password,
 		Tel:       input.Tel,
 		CreatedAt: user.CreatedAt,
 		UpdatedAt: time.Now(),
@@ -83,6 +83,40 @@ func (r *mutationResolver) CreateShop(ctx context.Context, input model.CreateSho
 	}
 
 	return shop, nil
+}
+
+// UpdateShop is the resolver for the updateShop field.
+func (r *mutationResolver) UpdateShop(ctx context.Context, id string, input model.UpdateShopInput) (*models.Shop, error) {
+	shop, err := r.ShopService.GetShopByID(id)
+	if err != nil {
+		return nil, err
+	}
+
+	updatedShop := &models.Shop{
+		ID:        shop.ID,
+		Name:      input.Name,
+		Address:   input.Address,
+		CreatedAt: shop.CreatedAt,
+		UpdatedAt: time.Now(),
+	}
+
+	err = r.ShopService.UpdateShop(updatedShop)
+	if err != nil {
+		return nil, err
+	}
+
+	return updatedShop, nil
+}
+
+// DeleteShop is the resolver for the deleteShop field.
+func (r *mutationResolver) DeleteShop(ctx context.Context, id string) (*bool, error) {
+	err := r.ShopService.DeleteShop(id)
+	if err != nil {
+		return nil, err
+	}
+
+	deleted := true
+	return &deleted, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.

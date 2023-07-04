@@ -119,3 +119,47 @@ func (r *UserRepository) DeleteUser(id string) error {
 
 	return nil
 }
+
+func (r *ShopRepository) UpdateShop(shop *models.Shop) error {
+	collection := r.DB.Collection("shops")
+
+	objectID, err := primitive.ObjectIDFromHex(shop.ID)
+	if err != nil {
+		return err
+	}
+
+	filter := bson.M{"_id": objectID}
+
+	update := bson.M{
+		"$set": bson.M{
+			"name":      shop.Name,
+			"address":   shop.Address,
+			"updatedAt": shop.UpdatedAt,
+		},
+	}
+
+	_, err = collection.UpdateOne(context.TODO(), filter, update)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (r *ShopRepository) DeleteShop(id string) error {
+	objectID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return err
+	}
+
+	collection := r.DB.Collection("shops")
+
+	filter := bson.M{"_id": objectID}
+
+	_, err = collection.DeleteOne(context.TODO(), filter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

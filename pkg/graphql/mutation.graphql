@@ -3,4 +3,6 @@ type Mutation {
   updateUser(id: ID!, input: UpdateUserInput!): User
   deleteUser(id: ID!): Boolean
   createShop(input: CreateShopInput!): Shop
+  updateShop(id: ID!, input: UpdateShopInput!): Shop
+  deleteShop(id: ID!): Boolean
 }

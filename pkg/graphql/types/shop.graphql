@@ -13,3 +13,8 @@ input CreateShopInput {
   name: String!
   address: String!
 }
+
+input UpdateShopInput {
+  name: String!
+  address: String!
+}

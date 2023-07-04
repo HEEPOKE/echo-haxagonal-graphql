@@ -14,6 +14,11 @@ type CreateUserInput struct {
 	Tel      string  `json:"tel"`
 }
 
+type UpdateShopInput struct {
+	Name    string `json:"name"`
+	Address string `json:"address"`
+}
+
 type UpdateUserInput struct {
 	Username string  `json:"username"`
 	Email    string  `json:"email"`
