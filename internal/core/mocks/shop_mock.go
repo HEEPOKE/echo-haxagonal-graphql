@@ -9,6 +9,7 @@ import (
 
 type ShopRepositoryMock struct {
 	mock.Mock
+	DB DatabaseInterface
 }
 
 func (m *ShopRepositoryMock) GetAllShops(ctx context.Context) ([]*models.Shop, error) {
