@@ -19,3 +19,9 @@ cp .env.example .env
 ```bash
 go run cmd/main.go
 ```
+
+## how to test unit test
+
+```bash
+go test ./...
+```
