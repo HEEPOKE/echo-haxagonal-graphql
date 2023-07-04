@@ -9,6 +9,7 @@ import (
 
 type UserRepositoryMock struct {
 	mock.Mock
+	DB DatabaseInterface
 }
 
 func (m *UserRepositoryMock) GetAllUsers(ctx context.Context) ([]*models.User, error) {
@@ -21,7 +22,7 @@ func (m *UserRepositoryMock) GetUserByID(ctx context.Context, id string) (*model
 	return args.Get(0).(*models.User), args.Error(1)
 }
 
-func (m *UserRepositoryMock) SaveUser(ctx context.Context, user *models.User) error {
+func (m *UserRepositoryMock) CreateUser(ctx context.Context, user *models.User) error {
 	args := m.Called(user)
 	return args.Error(0)
 }
