@@ -9,6 +9,7 @@ import (
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/core/mocks"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/models"
 	"github.com/HEEPOKE/echo-haxagonal-graphql/internal/domain/repositories"
+	"github.com/HEEPOKE/echo-haxagonal-graphql/pkg/config"
 	"github.com/stretchr/testify/suite"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -24,7 +25,8 @@ func TestUserRepositorySuite(t *testing.T) {
 }
 
 func (suite *UserRepositorySuite) SetupSuite() {
-	db, err := mocks.SetupDatabase()
+	mongoURL := config.Cfg.MONGO_URL
+	db, err := mocks.SetupDatabase(mongoURL)
 	if err != nil {
 		suite.FailNow(fmt.Sprintf("failed to set up mongo database: %s", err))
 	}
